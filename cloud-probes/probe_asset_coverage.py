@@ -39,7 +39,9 @@ def main():
    else:
     try:
      req=urllib.request.Request(url,data=json.dumps(body).encode() if body else None,headers={'User-Agent':'CryptoDataCoverage/1.0','Content-Type':'application/json'})
-     with urllib.request.urlopen(req,timeout=20) as response:raw=response.read(64_000_001);row['http_status']=response.status
+     with urllib.request.urlopen(req,timeout=20) as response:
+      raw=response.read(64_000_001);row['http_status']=response.status
+      row['provider_used_weight']={k:v for k,v in response.headers.items() if k.lower().startswith('x-mbx-used-weight') and str(v).isdigit()}
      if len(raw)>64_000_000:raise ValueError('response cap')
      data=json.loads(raw);row.update(status='PASS',sample_rows=validate(kind,data),response_bytes=len(raw))
      if source=='hyperliquid_perpetual':
@@ -50,7 +52,7 @@ def main():
      row.update(status='FAIL',http_status=error.code,error='HTTP '+str(error.code))
      if error.code in (418,429):row['cooldown']=guard.block(host,error.code,error.headers,error.read(65536).decode('utf8','replace'))
     except Exception as error:row.update(status='FAIL',error_type=type(error).__name__)
-    time.sleep(.4)
+    time.sleep(float(os.getenv('BINANCE_FUTURES_PAUSE_SECONDS','2')) if host=='fapi.binance.com' else .4)
    row['seconds']=round(time.monotonic()-tick,3);results.append(row)
    if len(results)%20==0:print('CRYPTODATA_PROGRESS='+json.dumps({'checked':len(results),'total':len(tasks)*rounds,'failed':sum(x['status']!='PASS' for x in results),'seconds':round(time.monotonic()-start,2)}),flush=True)
  report=dict(checked_at=dt.datetime.now(dt.timezone.utc).isoformat(),status='PASS' if all(x['status']=='PASS' for x in results) else 'FAIL',rounds=rounds,seconds=round(time.monotonic()-start,2),task_count_per_round=len(tasks),results=results,cooldowns=guard.state,scope='30 configured assets; API sample coverage x3, NOT production collector throughput x3 or six-month stability',missing_instruments='Frozen mappings absent entries are not configured; never replaced by another venue')
@@ -58,4 +60,5 @@ def main():
  print('CRYPTODATA_PROBE_REPORT='+json.dumps(report),flush=True)
  return 0 if report['status']=='PASS' else 2
 if __name__=='__main__':raise SystemExit(main())
+
 
