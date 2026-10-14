@@ -1,0 +1,782 @@
+{
+  "coinbase_spot|BTC": {
+    "symbol": "BTC-USD",
+    "quote": "USD",
+    "identity": "catalog_product_only; cross_venue_pending"
+  },
+  "coinbase_spot|ETH": {
+    "symbol": "ETH-USD",
+    "quote": "USD",
+    "identity": "catalog_product_only; cross_venue_pending"
+  },
+  "coinbase_spot|XRP": {
+    "symbol": "XRP-USD",
+    "quote": "USD",
+    "identity": "catalog_product_only; cross_venue_pending"
+  },
+  "coinbase_spot|DOGE": {
+    "symbol": "DOGE-USD",
+    "quote": "USD",
+    "identity": "catalog_product_only; cross_venue_pending"
+  },
+  "coinbase_spot|LTC": {
+    "symbol": "LTC-USD",
+    "quote": "USD",
+    "identity": "catalog_product_only; cross_venue_pending"
+  },
+  "coinbase_spot|BCH": {
+    "symbol": "BCH-USD",
+    "quote": "USD",
+    "identity": "catalog_product_only; cross_venue_pending"
+  },
+  "coinbase_spot|SOL": {
+    "symbol": "SOL-USD",
+    "quote": "USD",
+    "identity": "catalog_product_only; cross_venue_pending"
+  },
+  "coinbase_spot|BNB": {
+    "symbol": "BNB-USD",
+    "quote": "USD",
+    "identity": "catalog_product_only; cross_venue_pending"
+  },
+  "coinbase_spot|ADA": {
+    "symbol": "ADA-USD",
+    "quote": "USD",
+    "identity": "catalog_product_only; cross_venue_pending"
+  },
+  "coinbase_spot|AVAX": {
+    "symbol": "AVAX-USD",
+    "quote": "USD",
+    "identity": "catalog_product_only; cross_venue_pending"
+  },
+  "coinbase_spot|SUI": {
+    "symbol": "SUI-USD",
+    "quote": "USD",
+    "identity": "catalog_product_only; cross_venue_pending"
+  },
+  "coinbase_spot|ARB": {
+    "symbol": "ARB-USD",
+    "quote": "USD",
+    "identity": "catalog_product_only; cross_venue_pending"
+  },
+  "coinbase_spot|OP": {
+    "symbol": "OP-USD",
+    "quote": "USD",
+    "identity": "catalog_product_only; cross_venue_pending"
+  },
+  "coinbase_spot|DOT": {
+    "symbol": "DOT-USD",
+    "quote": "USD",
+    "identity": "catalog_product_only; cross_venue_pending"
+  },
+  "coinbase_spot|ATOM": {
+    "symbol": "ATOM-USD",
+    "quote": "USD",
+    "identity": "catalog_product_only; cross_venue_pending"
+  },
+  "coinbase_spot|NEAR": {
+    "symbol": "NEAR-USD",
+    "quote": "USD",
+    "identity": "catalog_product_only; cross_venue_pending"
+  },
+  "coinbase_spot|APT": {
+    "symbol": "APT-USD",
+    "quote": "USD",
+    "identity": "catalog_product_only; cross_venue_pending"
+  },
+  "coinbase_spot|LINK": {
+    "symbol": "LINK-USD",
+    "quote": "USD",
+    "identity": "catalog_product_only; cross_venue_pending"
+  },
+  "coinbase_spot|AAVE": {
+    "symbol": "AAVE-USD",
+    "quote": "USD",
+    "identity": "catalog_product_only; cross_venue_pending"
+  },
+  "coinbase_spot|UNI": {
+    "symbol": "UNI-USD",
+    "quote": "USD",
+    "identity": "catalog_product_only; cross_venue_pending"
+  },
+  "coinbase_spot|LDO": {
+    "symbol": "LDO-USD",
+    "quote": "USD",
+    "identity": "catalog_product_only; cross_venue_pending"
+  },
+  "coinbase_spot|PENDLE": {
+    "symbol": "PENDLE-USD",
+    "quote": "USD",
+    "identity": "catalog_product_only; cross_venue_pending"
+  },
+  "coinbase_spot|HYPE": {
+    "symbol": "HYPE-USD",
+    "quote": "USD",
+    "identity": "catalog_product_only; cross_venue_pending"
+  },
+  "coinbase_spot|ENA": {
+    "symbol": "ENA-USD",
+    "quote": "USD",
+    "identity": "catalog_product_only; cross_venue_pending"
+  },
+  "coinbase_spot|MORPHO": {
+    "symbol": "MORPHO-USD",
+    "quote": "USD",
+    "identity": "catalog_product_only; cross_venue_pending"
+  },
+  "coinbase_spot|CRV": {
+    "symbol": "CRV-USD",
+    "quote": "USD",
+    "identity": "catalog_product_only; cross_venue_pending"
+  },
+  "coinbase_spot|USDT": {
+    "symbol": "USDT-USD",
+    "quote": "USD",
+    "identity": "catalog_product_only; cross_venue_pending"
+  },
+  "kraken_spot|BTC": {
+    "symbol": "XXBTZUSD",
+    "quote": "USD",
+    "identity": "catalog_product_only; cross_venue_pending"
+  },
+  "kraken_spot|ETH": {
+    "symbol": "XETHZUSD",
+    "quote": "USD",
+    "identity": "catalog_product_only; cross_venue_pending"
+  },
+  "kraken_spot|XRP": {
+    "symbol": "XXRPZUSD",
+    "quote": "USD",
+    "identity": "catalog_product_only; cross_venue_pending"
+  },
+  "kraken_spot|LTC": {
+    "symbol": "XLTCZUSD",
+    "quote": "USD",
+    "identity": "catalog_product_only; cross_venue_pending"
+  },
+  "kraken_spot|BCH": {
+    "symbol": "BCHUSD",
+    "quote": "USD",
+    "identity": "catalog_product_only; cross_venue_pending"
+  },
+  "kraken_spot|SOL": {
+    "symbol": "SOLUSD",
+    "quote": "USD",
+    "identity": "catalog_product_only; cross_venue_pending"
+  },
+  "kraken_spot|BNB": {
+    "symbol": "BNBUSD",
+    "quote": "USD",
+    "identity": "catalog_product_only; cross_venue_pending"
+  },
+  "kraken_spot|ADA": {
+    "symbol": "ADAUSD",
+    "quote": "USD",
+    "identity": "catalog_product_only; cross_venue_pending"
+  },
+  "kraken_spot|AVAX": {
+    "symbol": "AVAXUSD",
+    "quote": "USD",
+    "identity": "catalog_product_only; cross_venue_pending"
+  },
+  "kraken_spot|SUI": {
+    "symbol": "SUIUSD",
+    "quote": "USD",
+    "identity": "catalog_product_only; cross_venue_pending"
+  },
+  "kraken_spot|ARB": {
+    "symbol": "ARBUSD",
+    "quote": "USD",
+    "identity": "catalog_product_only; cross_venue_pending"
+  },
+  "kraken_spot|OP": {
+    "symbol": "OPUSD",
+    "quote": "USD",
+    "identity": "catalog_product_only; cross_venue_pending"
+  },
+  "kraken_spot|DOT": {
+    "symbol": "DOTUSD",
+    "quote": "USD",
+    "identity": "catalog_product_only; cross_venue_pending"
+  },
+  "kraken_spot|ATOM": {
+    "symbol": "ATOMUSD",
+    "quote": "USD",
+    "identity": "catalog_product_only; cross_venue_pending"
+  },
+  "kraken_spot|NEAR": {
+    "symbol": "NEARUSD",
+    "quote": "USD",
+    "identity": "catalog_product_only; cross_venue_pending"
+  },
+  "kraken_spot|APT": {
+    "symbol": "APTUSD",
+    "quote": "USD",
+    "identity": "catalog_product_only; cross_venue_pending"
+  },
+  "kraken_spot|LINK": {
+    "symbol": "LINKUSD",
+    "quote": "USD",
+    "identity": "catalog_product_only; cross_venue_pending"
+  },
+  "kraken_spot|AAVE": {
+    "symbol": "AAVEUSD",
+    "quote": "USD",
+    "identity": "catalog_product_only; cross_venue_pending"
+  },
+  "kraken_spot|UNI": {
+    "symbol": "UNIUSD",
+    "quote": "USD",
+    "identity": "catalog_product_only; cross_venue_pending"
+  },
+  "kraken_spot|LDO": {
+    "symbol": "LDOUSD",
+    "quote": "USD",
+    "identity": "catalog_product_only; cross_venue_pending"
+  },
+  "kraken_spot|PENDLE": {
+    "symbol": "PENDLEUSD",
+    "quote": "USD",
+    "identity": "catalog_product_only; cross_venue_pending"
+  },
+  "kraken_spot|HYPE": {
+    "symbol": "HYPEUSD",
+    "quote": "USD",
+    "identity": "catalog_product_only; cross_venue_pending"
+  },
+  "kraken_spot|ENA": {
+    "symbol": "ENAUSD",
+    "quote": "USD",
+    "identity": "catalog_product_only; cross_venue_pending"
+  },
+  "kraken_spot|TRX": {
+    "symbol": "TRXUSD",
+    "quote": "USD",
+    "identity": "catalog_product_only; cross_venue_pending"
+  },
+  "kraken_spot|MORPHO": {
+    "symbol": "MORPHOUSD",
+    "quote": "USD",
+    "identity": "catalog_product_only; cross_venue_pending"
+  },
+  "kraken_spot|CRV": {
+    "symbol": "CRVUSD",
+    "quote": "USD",
+    "identity": "catalog_product_only; cross_venue_pending"
+  },
+  "kraken_spot|USDT": {
+    "symbol": "USDTZUSD",
+    "quote": "USD",
+    "identity": "catalog_product_only; cross_venue_pending"
+  },
+  "kraken_spot|USDC": {
+    "symbol": "USDCUSD",
+    "quote": "USD",
+    "identity": "catalog_product_only; cross_venue_pending"
+  },
+  "kraken_spot|USDe": {
+    "symbol": "USDEUSD",
+    "quote": "USD",
+    "identity": "catalog_product_only; cross_venue_pending"
+  },
+  "upbit_spot|BTC": {
+    "symbol": "KRW-BTC",
+    "quote": "KRW",
+    "identity": "catalog_product_only; cross_venue_pending"
+  },
+  "upbit_spot|ETH": {
+    "symbol": "KRW-ETH",
+    "quote": "KRW",
+    "identity": "catalog_product_only; cross_venue_pending"
+  },
+  "upbit_spot|XRP": {
+    "symbol": "KRW-XRP",
+    "quote": "KRW",
+    "identity": "catalog_product_only; cross_venue_pending"
+  },
+  "upbit_spot|DOGE": {
+    "symbol": "KRW-DOGE",
+    "quote": "KRW",
+    "identity": "catalog_product_only; cross_venue_pending"
+  },
+  "upbit_spot|BCH": {
+    "symbol": "KRW-BCH",
+    "quote": "KRW",
+    "identity": "catalog_product_only; cross_venue_pending"
+  },
+  "upbit_spot|SOL": {
+    "symbol": "KRW-SOL",
+    "quote": "KRW",
+    "identity": "catalog_product_only; cross_venue_pending"
+  },
+  "upbit_spot|ADA": {
+    "symbol": "KRW-ADA",
+    "quote": "KRW",
+    "identity": "catalog_product_only; cross_venue_pending"
+  },
+  "upbit_spot|AVAX": {
+    "symbol": "KRW-AVAX",
+    "quote": "KRW",
+    "identity": "catalog_product_only; cross_venue_pending"
+  },
+  "upbit_spot|SUI": {
+    "symbol": "KRW-SUI",
+    "quote": "KRW",
+    "identity": "catalog_product_only; cross_venue_pending"
+  },
+  "upbit_spot|ARB": {
+    "symbol": "KRW-ARB",
+    "quote": "KRW",
+    "identity": "catalog_product_only; cross_venue_pending"
+  },
+  "upbit_spot|OP": {
+    "symbol": "KRW-OP",
+    "quote": "KRW",
+    "identity": "catalog_product_only; cross_venue_pending"
+  },
+  "upbit_spot|DOT": {
+    "symbol": "KRW-DOT",
+    "quote": "KRW",
+    "identity": "catalog_product_only; cross_venue_pending"
+  },
+  "upbit_spot|ATOM": {
+    "symbol": "KRW-ATOM",
+    "quote": "KRW",
+    "identity": "catalog_product_only; cross_venue_pending"
+  },
+  "upbit_spot|NEAR": {
+    "symbol": "KRW-NEAR",
+    "quote": "KRW",
+    "identity": "catalog_product_only; cross_venue_pending"
+  },
+  "upbit_spot|APT": {
+    "symbol": "KRW-APT",
+    "quote": "KRW",
+    "identity": "catalog_product_only; cross_venue_pending"
+  },
+  "upbit_spot|LINK": {
+    "symbol": "KRW-LINK",
+    "quote": "KRW",
+    "identity": "catalog_product_only; cross_venue_pending"
+  },
+  "upbit_spot|AAVE": {
+    "symbol": "KRW-AAVE",
+    "quote": "KRW",
+    "identity": "catalog_product_only; cross_venue_pending"
+  },
+  "upbit_spot|UNI": {
+    "symbol": "KRW-UNI",
+    "quote": "KRW",
+    "identity": "catalog_product_only; cross_venue_pending"
+  },
+  "upbit_spot|PENDLE": {
+    "symbol": "KRW-PENDLE",
+    "quote": "KRW",
+    "identity": "catalog_product_only; cross_venue_pending"
+  },
+  "upbit_spot|ENA": {
+    "symbol": "KRW-ENA",
+    "quote": "KRW",
+    "identity": "catalog_product_only; cross_venue_pending"
+  },
+  "upbit_spot|TRX": {
+    "symbol": "KRW-TRX",
+    "quote": "KRW",
+    "identity": "catalog_product_only; cross_venue_pending"
+  },
+  "upbit_spot|MORPHO": {
+    "symbol": "KRW-MORPHO",
+    "quote": "KRW",
+    "identity": "catalog_product_only; cross_venue_pending"
+  },
+  "upbit_spot|CRV": {
+    "symbol": "KRW-CRV",
+    "quote": "KRW",
+    "identity": "catalog_product_only; cross_venue_pending"
+  },
+  "upbit_spot|USDT": {
+    "symbol": "KRW-USDT",
+    "quote": "KRW",
+    "identity": "catalog_product_only; cross_venue_pending"
+  },
+  "upbit_spot|USDC": {
+    "symbol": "KRW-USDC",
+    "quote": "KRW",
+    "identity": "catalog_product_only; cross_venue_pending"
+  },
+  "upbit_spot|USDe": {
+    "symbol": "KRW-USDE",
+    "quote": "KRW",
+    "identity": "catalog_product_only; cross_venue_pending"
+  },
+  "bithumb_spot|BTC": {
+    "symbol": "KRW-BTC",
+    "quote": "KRW",
+    "identity": "catalog_product_only; cross_venue_pending"
+  },
+  "bithumb_spot|ETH": {
+    "symbol": "KRW-ETH",
+    "quote": "KRW",
+    "identity": "catalog_product_only; cross_venue_pending"
+  },
+  "bithumb_spot|XRP": {
+    "symbol": "KRW-XRP",
+    "quote": "KRW",
+    "identity": "catalog_product_only; cross_venue_pending"
+  },
+  "bithumb_spot|DOGE": {
+    "symbol": "KRW-DOGE",
+    "quote": "KRW",
+    "identity": "catalog_product_only; cross_venue_pending"
+  },
+  "bithumb_spot|BCH": {
+    "symbol": "KRW-BCH",
+    "quote": "KRW",
+    "identity": "catalog_product_only; cross_venue_pending"
+  },
+  "bithumb_spot|SOL": {
+    "symbol": "KRW-SOL",
+    "quote": "KRW",
+    "identity": "catalog_product_only; cross_venue_pending"
+  },
+  "bithumb_spot|BNB": {
+    "symbol": "KRW-BNB",
+    "quote": "KRW",
+    "identity": "catalog_product_only; cross_venue_pending"
+  },
+  "bithumb_spot|ADA": {
+    "symbol": "KRW-ADA",
+    "quote": "KRW",
+    "identity": "catalog_product_only; cross_venue_pending"
+  },
+  "bithumb_spot|AVAX": {
+    "symbol": "KRW-AVAX",
+    "quote": "KRW",
+    "identity": "catalog_product_only; cross_venue_pending"
+  },
+  "bithumb_spot|SUI": {
+    "symbol": "KRW-SUI",
+    "quote": "KRW",
+    "identity": "catalog_product_only; cross_venue_pending"
+  },
+  "bithumb_spot|ARB": {
+    "symbol": "KRW-ARB",
+    "quote": "KRW",
+    "identity": "catalog_product_only; cross_venue_pending"
+  },
+  "bithumb_spot|OP": {
+    "symbol": "KRW-OP",
+    "quote": "KRW",
+    "identity": "catalog_product_only; cross_venue_pending"
+  },
+  "bithumb_spot|DOT": {
+    "symbol": "KRW-DOT",
+    "quote": "KRW",
+    "identity": "catalog_product_only; cross_venue_pending"
+  },
+  "bithumb_spot|ATOM": {
+    "symbol": "KRW-ATOM",
+    "quote": "KRW",
+    "identity": "catalog_product_only; cross_venue_pending"
+  },
+  "bithumb_spot|NEAR": {
+    "symbol": "KRW-NEAR",
+    "quote": "KRW",
+    "identity": "catalog_product_only; cross_venue_pending"
+  },
+  "bithumb_spot|APT": {
+    "symbol": "KRW-APT",
+    "quote": "KRW",
+    "identity": "catalog_product_only; cross_venue_pending"
+  },
+  "bithumb_spot|LINK": {
+    "symbol": "KRW-LINK",
+    "quote": "KRW",
+    "identity": "catalog_product_only; cross_venue_pending"
+  },
+  "bithumb_spot|AAVE": {
+    "symbol": "KRW-AAVE",
+    "quote": "KRW",
+    "identity": "catalog_product_only; cross_venue_pending"
+  },
+  "bithumb_spot|UNI": {
+    "symbol": "KRW-UNI",
+    "quote": "KRW",
+    "identity": "catalog_product_only; cross_venue_pending"
+  },
+  "bithumb_spot|LDO": {
+    "symbol": "KRW-LDO",
+    "quote": "KRW",
+    "identity": "catalog_product_only; cross_venue_pending"
+  },
+  "bithumb_spot|PENDLE": {
+    "symbol": "KRW-PENDLE",
+    "quote": "KRW",
+    "identity": "catalog_product_only; cross_venue_pending"
+  },
+  "bithumb_spot|ENA": {
+    "symbol": "KRW-ENA",
+    "quote": "KRW",
+    "identity": "catalog_product_only; cross_venue_pending"
+  },
+  "bithumb_spot|TRX": {
+    "symbol": "KRW-TRX",
+    "quote": "KRW",
+    "identity": "catalog_product_only; cross_venue_pending"
+  },
+  "bithumb_spot|MORPHO": {
+    "symbol": "KRW-MORPHO",
+    "quote": "KRW",
+    "identity": "catalog_product_only; cross_venue_pending"
+  },
+  "bithumb_spot|CRV": {
+    "symbol": "KRW-CRV",
+    "quote": "KRW",
+    "identity": "catalog_product_only; cross_venue_pending"
+  },
+  "bithumb_spot|USDT": {
+    "symbol": "KRW-USDT",
+    "quote": "KRW",
+    "identity": "catalog_product_only; cross_venue_pending"
+  },
+  "bithumb_spot|USDC": {
+    "symbol": "KRW-USDC",
+    "quote": "KRW",
+    "identity": "catalog_product_only; cross_venue_pending"
+  },
+  "bithumb_spot|USDe": {
+    "symbol": "KRW-USDE",
+    "quote": "KRW",
+    "identity": "catalog_product_only; cross_venue_pending"
+  },
+  "bitflyer_spot|BTC": {
+    "symbol": "BTC_JPY",
+    "quote": "JPY",
+    "identity": "catalog_product_only; cross_venue_pending"
+  },
+  "bitflyer_spot|ETH": {
+    "symbol": "ETH_JPY",
+    "quote": "JPY",
+    "identity": "catalog_product_only; cross_venue_pending"
+  },
+  "bitflyer_spot|XRP": {
+    "symbol": "XRP_JPY",
+    "quote": "JPY",
+    "identity": "catalog_product_only; cross_venue_pending"
+  },
+  "hyperliquid_perpetual|BTC": {
+    "symbol": "BTC",
+    "quote": "USDC",
+    "identity": "provider_perpetual_name; cross_venue_pending"
+  },
+  "hyperliquid_perpetual|ETH": {
+    "symbol": "ETH",
+    "quote": "USDC",
+    "identity": "provider_perpetual_name; cross_venue_pending"
+  },
+  "hyperliquid_perpetual|ATOM": {
+    "symbol": "ATOM",
+    "quote": "USDC",
+    "identity": "provider_perpetual_name; cross_venue_pending"
+  },
+  "hyperliquid_perpetual|SOL": {
+    "symbol": "SOL",
+    "quote": "USDC",
+    "identity": "provider_perpetual_name; cross_venue_pending"
+  },
+  "hyperliquid_perpetual|AVAX": {
+    "symbol": "AVAX",
+    "quote": "USDC",
+    "identity": "provider_perpetual_name; cross_venue_pending"
+  },
+  "hyperliquid_perpetual|BNB": {
+    "symbol": "BNB",
+    "quote": "USDC",
+    "identity": "provider_perpetual_name; cross_venue_pending"
+  },
+  "hyperliquid_perpetual|OP": {
+    "symbol": "OP",
+    "quote": "USDC",
+    "identity": "provider_perpetual_name; cross_venue_pending"
+  },
+  "hyperliquid_perpetual|LTC": {
+    "symbol": "LTC",
+    "quote": "USDC",
+    "identity": "provider_perpetual_name; cross_venue_pending"
+  },
+  "hyperliquid_perpetual|ARB": {
+    "symbol": "ARB",
+    "quote": "USDC",
+    "identity": "provider_perpetual_name; cross_venue_pending"
+  },
+  "hyperliquid_perpetual|DOGE": {
+    "symbol": "DOGE",
+    "quote": "USDC",
+    "identity": "provider_perpetual_name; cross_venue_pending"
+  },
+  "hyperliquid_perpetual|SUI": {
+    "symbol": "SUI",
+    "quote": "USDC",
+    "identity": "provider_perpetual_name; cross_venue_pending"
+  },
+  "hyperliquid_perpetual|CRV": {
+    "symbol": "CRV",
+    "quote": "USDC",
+    "identity": "provider_perpetual_name; cross_venue_pending"
+  },
+  "hyperliquid_perpetual|LDO": {
+    "symbol": "LDO",
+    "quote": "USDC",
+    "identity": "provider_perpetual_name; cross_venue_pending"
+  },
+  "hyperliquid_perpetual|LINK": {
+    "symbol": "LINK",
+    "quote": "USDC",
+    "identity": "provider_perpetual_name; cross_venue_pending"
+  },
+  "hyperliquid_perpetual|XRP": {
+    "symbol": "XRP",
+    "quote": "USDC",
+    "identity": "provider_perpetual_name; cross_venue_pending"
+  },
+  "hyperliquid_perpetual|BCH": {
+    "symbol": "BCH",
+    "quote": "USDC",
+    "identity": "provider_perpetual_name; cross_venue_pending"
+  },
+  "hyperliquid_perpetual|APT": {
+    "symbol": "APT",
+    "quote": "USDC",
+    "identity": "provider_perpetual_name; cross_venue_pending"
+  },
+  "hyperliquid_perpetual|AAVE": {
+    "symbol": "AAVE",
+    "quote": "USDC",
+    "identity": "provider_perpetual_name; cross_venue_pending"
+  },
+  "hyperliquid_perpetual|TRX": {
+    "symbol": "TRX",
+    "quote": "USDC",
+    "identity": "provider_perpetual_name; cross_venue_pending"
+  },
+  "hyperliquid_perpetual|UNI": {
+    "symbol": "UNI",
+    "quote": "USDC",
+    "identity": "provider_perpetual_name; cross_venue_pending"
+  },
+  "hyperliquid_perpetual|DOT": {
+    "symbol": "DOT",
+    "quote": "USDC",
+    "identity": "provider_perpetual_name; cross_venue_pending"
+  },
+  "hyperliquid_perpetual|ADA": {
+    "symbol": "ADA",
+    "quote": "USDC",
+    "identity": "provider_perpetual_name; cross_venue_pending"
+  },
+  "hyperliquid_perpetual|PENDLE": {
+    "symbol": "PENDLE",
+    "quote": "USDC",
+    "identity": "provider_perpetual_name; cross_venue_pending"
+  },
+  "hyperliquid_perpetual|NEAR": {
+    "symbol": "NEAR",
+    "quote": "USDC",
+    "identity": "provider_perpetual_name; cross_venue_pending"
+  },
+  "hyperliquid_perpetual|ENA": {
+    "symbol": "ENA",
+    "quote": "USDC",
+    "identity": "provider_perpetual_name; cross_venue_pending"
+  },
+  "hyperliquid_perpetual|HYPE": {
+    "symbol": "HYPE",
+    "quote": "USDC",
+    "identity": "provider_perpetual_name; cross_venue_pending"
+  },
+  "hyperliquid_perpetual|MORPHO": {
+    "symbol": "MORPHO",
+    "quote": "USDC",
+    "identity": "provider_perpetual_name; cross_venue_pending"
+  },
+  "bitbank_spot|BTC": {
+    "symbol": "btc_jpy",
+    "quote": "JPY",
+    "identity": "catalog_product_only; cross_venue_pending"
+  },
+  "bitbank_spot|ETH": {
+    "symbol": "eth_jpy",
+    "quote": "JPY",
+    "identity": "catalog_product_only; cross_venue_pending"
+  },
+  "bitbank_spot|XRP": {
+    "symbol": "xrp_jpy",
+    "quote": "JPY",
+    "identity": "catalog_product_only; cross_venue_pending"
+  },
+  "bitbank_spot|DOGE": {
+    "symbol": "doge_jpy",
+    "quote": "JPY",
+    "identity": "catalog_product_only; cross_venue_pending"
+  },
+  "bitbank_spot|LTC": {
+    "symbol": "ltc_jpy",
+    "quote": "JPY",
+    "identity": "catalog_product_only; cross_venue_pending"
+  },
+  "bitbank_spot|SOL": {
+    "symbol": "sol_jpy",
+    "quote": "JPY",
+    "identity": "catalog_product_only; cross_venue_pending"
+  },
+  "bitbank_spot|BNB": {
+    "symbol": "bnb_jpy",
+    "quote": "JPY",
+    "identity": "catalog_product_only; cross_venue_pending"
+  },
+  "bitbank_spot|ADA": {
+    "symbol": "ada_jpy",
+    "quote": "JPY",
+    "identity": "catalog_product_only; cross_venue_pending"
+  },
+  "bitbank_spot|AVAX": {
+    "symbol": "avax_jpy",
+    "quote": "JPY",
+    "identity": "catalog_product_only; cross_venue_pending"
+  },
+  "bitbank_spot|SUI": {
+    "symbol": "sui_jpy",
+    "quote": "JPY",
+    "identity": "catalog_product_only; cross_venue_pending"
+  },
+  "bitbank_spot|ARB": {
+    "symbol": "arb_jpy",
+    "quote": "JPY",
+    "identity": "catalog_product_only; cross_venue_pending"
+  },
+  "bitbank_spot|OP": {
+    "symbol": "op_jpy",
+    "quote": "JPY",
+    "identity": "catalog_product_only; cross_venue_pending"
+  },
+  "bitbank_spot|DOT": {
+    "symbol": "dot_jpy",
+    "quote": "JPY",
+    "identity": "catalog_product_only; cross_venue_pending"
+  },
+  "bitbank_spot|ATOM": {
+    "symbol": "atom_jpy",
+    "quote": "JPY",
+    "identity": "catalog_product_only; cross_venue_pending"
+  },
+  "bitbank_spot|LINK": {
+    "symbol": "link_jpy",
+    "quote": "JPY",
+    "identity": "catalog_product_only; cross_venue_pending"
+  },
+  "bitbank_spot|TRX": {
+    "symbol": "trx_jpy",
+    "quote": "JPY",
+    "identity": "catalog_product_only; cross_venue_pending"
+  }
+}

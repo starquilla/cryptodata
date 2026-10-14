@@ -6,12 +6,20 @@ LOCK = threading.Lock()
 def run_probe():
     try:
         with tempfile.TemporaryDirectory() as work:
-            result = subprocess.run([sys.executable, str(pathlib.Path(__file__).resolve().with_name('probe_cloud_sources.py'))], cwd=work, capture_output=True, text=True, timeout=450)
-            lines = [x for x in result.stdout.splitlines() if x.startswith('CRYPTODATA_PROBE_REPORT=')]
+            script = 'probe_asset_coverage.py' if os.getenv('PROBE_MODE') == 'coverage' else 'probe_cloud_sources.py'
+            process = subprocess.Popen([sys.executable, str(pathlib.Path(__file__).resolve().with_name(script))], cwd=work, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+            watchdog=threading.Timer(1600,process.kill);watchdog.daemon=True;watchdog.start()
+            lines=[]
+            for line in process.stdout:
+                if line.startswith('CRYPTODATA_PROGRESS='):
+                    with LOCK: STATE.update(progress=json.loads(line.split('=',1)[1]))
+                if line.startswith('CRYPTODATA_PROBE_REPORT='): lines.append(line.strip())
+            process.wait(timeout=30)
+            watchdog.cancel()
             if not lines: raise ValueError('probe report absent')
             report = json.loads(lines[-1].split('=', 1)[1])
             report['environment'] = 'Render source availability probe'
-            report['exit_code'] = result.returncode
+            report['exit_code'] = process.returncode
             report['configured_region'] = os.getenv('PROBE_REGION', 'UNSPECIFIED')
             report['region_is_provider_configuration_not_geolocation_proof'] = True
             report['cooldown_persistence'] = 'local file within this probe; export cooldowns into Render env before any restart; production external persistence NOT_IMPLEMENTED'
@@ -36,4 +44,3 @@ class Handler(BaseHTTPRequestHandler):
 if __name__ == '__main__':
     threading.Thread(target=run_probe, daemon=True).start()
     ThreadingHTTPServer(('0.0.0.0', int(os.getenv('PORT', '10000'))), Handler).serve_forever()
-
