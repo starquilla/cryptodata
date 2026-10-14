@@ -21,7 +21,7 @@ def main():
             for p in (R/folder).rglob('*'):
                 if p.is_file():z.write(p,str(p.relative_to(R)))
     if target.stat().st_size>20_000_000:raise RuntimeError('20MB emergency artifact cap exceeded')
-    summary={'run_id':c.id,'errors':report['errors'],'database_rows':report['database_rows'],'package_bytes':target.stat().st_size,'limitations':['not full replacement for PC or DPAPI Drive backup','region/IP blocking remains an error; no venue substitution','1-day candle/funding window and OI snapshots; daily/research history excluded','package persists only if optional artifact upload enabled']}
+    summary={'run_id':c.id,'errors':report['errors'],'source_errors':[x for x in report['coverage'] if x.get('status')=='error'],'database_rows':report['database_rows'],'package_bytes':target.stat().st_size,'limitations':['not full replacement for PC or DPAPI Drive backup','region/IP blocking remains an error; no venue substitution','1-day candle/funding window and OI snapshots; daily/research history excluded','package persists only if optional artifact upload enabled']}
     (R/'cloud-summary.json').write_text(json.dumps(summary,indent=2))
     if os.getenv('GITHUB_STEP_SUMMARY'):
         with open(os.environ['GITHUB_STEP_SUMMARY'],'a') as f:f.write('## CryptoData emergency run\n```json\n'+json.dumps(summary,indent=2)+'\n```\n')

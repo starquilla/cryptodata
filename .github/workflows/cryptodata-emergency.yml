@@ -40,3 +40,5 @@ jobs:
           path: ops/resources/emergency.zip
           retention-days: 1
           if-no-files-found: error
+      - name: Data health gate
+        run: python -c "import json,sys; s=json.load(open('ops/resources/cloud-summary.json')); sys.exit(2 if s['errors'] else 0)"

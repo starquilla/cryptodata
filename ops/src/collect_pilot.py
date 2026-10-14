@@ -34,7 +34,7 @@ class Collector:
         CREATE TABLE IF NOT EXISTS runs(run_id TEXT PRIMARY KEY,start_time INTEGER,end_time INTEGER,started_at TEXT,status TEXT);
         ''')
         self.db.execute('INSERT INTO runs VALUES (?,?,?,?,?)',(self.id,self.start,self.end,utc(),'running')); self.db.commit()
-    def get(self, source, base, params=None):
+    def get(self, source, base, params=None,body=None):
         url=base+('?' + urllib.parse.urlencode(params) if params else '')
         self.counter+=1
         item={'source':source,'url':url,'observed_at':utc(),'attempts':0}
@@ -43,7 +43,7 @@ class Collector:
             for attempt in range(3):
                 item['attempts']+=1
                 try:
-                    req=urllib.request.Request(url,headers={'User-Agent':'CryptoDataResearch/0.2'})
+                    req=urllib.request.Request(url,data=json.dumps(body).encode() if body else None,headers={'User-Agent':'CryptoDataResearch/0.2','Content-Type':'application/json'})
                     with urllib.request.urlopen(req,timeout=20) as response:
                         raw=response.read(64000001); item['http_status']=response.status
                     if len(raw)>64000000: raise ValueError('response too large')
