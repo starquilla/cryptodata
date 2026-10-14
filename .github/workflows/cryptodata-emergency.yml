@@ -1,0 +1,42 @@
+name: CryptoData emergency verification
+on:
+  push:
+    paths: ['ops/**', '.github/workflows/cryptodata-emergency.yml']
+  workflow_dispatch:
+    inputs:
+      retain_package:
+        description: 'Retain <=20MB for 1 day; first verify account Actions storage budget is $0'
+        required: true
+        type: boolean
+        default: false
+permissions:
+  contents: read
+concurrency:
+  group: cryptodata-emergency
+  cancel-in-progress: false
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.14'
+      - name: Public-data collection, source errors remain visible
+        env:
+          CRYPTODATA_RESOURCE_ROOT: '${{ github.workspace }}/ops/resources'
+        run: python ops/src/cloud_emergency.py > cloud-run.log 2>&1
+        continue-on-error: true
+      - name: Check report was actually produced
+        run: |
+          test -f ops/resources/cloud-summary.json
+          cat ops/resources/cloud-summary.json
+      - name: Optional bounded recovery package
+        if: github.event_name == 'workflow_dispatch' && inputs.retain_package
+        uses: actions/upload-artifact@v4
+        with:
+          name: cryptodata-emergency-${{ github.run_id }}
+          path: ops/resources/emergency.zip
+          retention-days: 1
+          if-no-files-found: error
