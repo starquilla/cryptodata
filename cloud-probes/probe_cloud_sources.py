@@ -1,5 +1,7 @@
 """Read-only source availability probe; no secrets, trading, schedules or artifact upload."""
 import datetime as dt,json,math,os,pathlib,time,urllib.request,urllib.error
+import urllib.parse
+from cloud_rate_guard import RateGuard
 PROBES=[
 ('binance_spot','candles','https://data-api.binance.vision/api/v3/klines?symbol=BTCUSDT&interval=5m&limit=3','binance_candles',None),
 ('okx_spot','candles','https://www.okx.com/api/v5/market/history-candles?instId=BTC-USDT&bar=5m&limit=3','okx_candles',None),
@@ -55,17 +57,26 @@ def validate(kind,d):
     raise ValueError('unknown validation kind')
 def main():
     results=[];started=time.monotonic()
+    guard=RateGuard(os.getenv('PROBE_STATE_PATH','rate-cooldowns.json'), json.loads(os.getenv('PROBE_COOLDOWNS_JSON','{}')))
     for source,dataset,url,kind,body in PROBES:
         t=time.monotonic();entry={'source':source,'dataset':dataset,'url':url,'checked_at':dt.datetime.now(dt.timezone.utc).isoformat()}
+        host=urllib.parse.urlparse(url).netloc
+        if guard.remaining(host):
+            entry.update(status='COOLDOWN',retry_at=dt.datetime.fromtimestamp(guard.state[host]['until'],dt.timezone.utc).isoformat())
+            results.append(entry);continue
         try:
             req=urllib.request.Request(url,data=json.dumps(body).encode() if body else None,headers={'User-Agent':'CryptoDataAvailability/1.0','Content-Type':'application/json'})
             with urllib.request.urlopen(req,timeout=20) as f:entry['http_status']=f.status;raw=f.read(64_000_001)
             if len(raw)>64_000_000:raise ValueError('size cap')
             data=json.loads(raw);entry.update(status='PASS',sample_rows=validate(kind,data),response_bytes=len(raw))
-        except urllib.error.HTTPError as e:entry.update(status='FAIL',http_status=e.code,error='HTTP '+str(e.code))
+        except urllib.error.HTTPError as e:
+            entry.update(status='FAIL',http_status=e.code,error='HTTP '+str(e.code))
+            if e.code in (418,429):
+                block=guard.block(host,e.code,e.headers,e.read(65536).decode('utf8','replace'))
+                entry.update(cooldown=block,retry_at=dt.datetime.fromtimestamp(block['until'],dt.timezone.utc).isoformat())
         except Exception as e:entry.update(status='FAIL',error_type=type(e).__name__,error=str(e)[:160])
         entry['seconds']=round(time.monotonic()-t,3);results.append(entry);print(json.dumps(entry),flush=True);time.sleep(.3)
-    report={'checked_at':dt.datetime.now(dt.timezone.utc).isoformat(),'runner_os':os.getenv('RUNNER_OS','local'),'runner_arch':os.getenv('RUNNER_ARCH','local'),'workflow_run_id':os.getenv('GITHUB_RUN_ID'),'scope':'BTC sample and shared DeFi; no full 30-asset test or storage/scheduling acceptance','status':'PASS' if all(x['status']=='PASS' for x in results) else 'FAIL','seconds':round(time.monotonic()-started,3),'results':results}
+    report={'checked_at':dt.datetime.now(dt.timezone.utc).isoformat(),'runner_os':os.getenv('RUNNER_OS','local'),'runner_arch':os.getenv('RUNNER_ARCH','local'),'workflow_run_id':os.getenv('GITHUB_RUN_ID'),'scope':'BTC sample and shared DeFi; no full 30-asset test or storage/scheduling acceptance','status':'PASS' if all(x['status']=='PASS' for x in results) else 'FAIL','seconds':round(time.monotonic()-started,3),'results':results,'cooldowns':guard.state}
     pathlib.Path('cloud-availability.json').write_text(json.dumps(report,indent=2),encoding='utf8')
     print('CRYPTODATA_PROBE_REPORT='+json.dumps(report),flush=True)
     if os.getenv('GITHUB_STEP_SUMMARY'):

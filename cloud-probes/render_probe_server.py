@@ -14,6 +14,7 @@ def run_probe():
             report['exit_code'] = result.returncode
             report['configured_region'] = os.getenv('PROBE_REGION', 'UNSPECIFIED')
             report['region_is_provider_configuration_not_geolocation_proof'] = True
+            report['cooldown_persistence'] = 'local file within this probe; export cooldowns into Render env before any restart; production external persistence NOT_IMPLEMENTED'
         with LOCK:
             STATE.clear(); STATE.update(report)
         print('CRYPTODATA_PROBE_REPORT=' + json.dumps(report), flush=True)
