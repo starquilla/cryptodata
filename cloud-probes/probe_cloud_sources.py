@@ -66,7 +66,9 @@ def main():
             results.append(entry);continue
         try:
             req=urllib.request.Request(url,data=json.dumps(body).encode() if body else None,headers={'User-Agent':'CryptoDataAvailability/1.0','Content-Type':'application/json'})
-            with urllib.request.urlopen(req,timeout=20) as f:entry['http_status']=f.status;raw=f.read(64_000_001)
+            with urllib.request.urlopen(req,timeout=20) as f:
+                entry['http_status']=f.status;raw=f.read(64_000_001)
+                entry['provider_used_weight']={k:v for k,v in f.headers.items() if k.lower().startswith('x-mbx-used-weight') and str(v).isdigit()}
             if len(raw)>64_000_000:raise ValueError('size cap')
             data=json.loads(raw);entry.update(status='PASS',sample_rows=validate(kind,data),response_bytes=len(raw))
         except urllib.error.HTTPError as e:
@@ -75,7 +77,7 @@ def main():
                 block=guard.block(host,e.code,e.headers,e.read(65536).decode('utf8','replace'))
                 entry.update(cooldown=block,retry_at=dt.datetime.fromtimestamp(block['until'],dt.timezone.utc).isoformat())
         except Exception as e:entry.update(status='FAIL',error_type=type(e).__name__,error=str(e)[:160])
-        entry['seconds']=round(time.monotonic()-t,3);results.append(entry);print(json.dumps(entry),flush=True);time.sleep(.3)
+        entry['seconds']=round(time.monotonic()-t,3);results.append(entry);print(json.dumps(entry),flush=True);time.sleep(max(2.0,float(os.getenv('BINANCE_FUTURES_PAUSE_SECONDS','2'))) if host=='fapi.binance.com' else .4)
     report={'checked_at':dt.datetime.now(dt.timezone.utc).isoformat(),'runner_os':os.getenv('RUNNER_OS','local'),'runner_arch':os.getenv('RUNNER_ARCH','local'),'workflow_run_id':os.getenv('GITHUB_RUN_ID'),'scope':'BTC sample and shared DeFi; no full 30-asset test or storage/scheduling acceptance','status':'PASS' if all(x['status']=='PASS' for x in results) else 'FAIL','seconds':round(time.monotonic()-started,3),'results':results,'cooldowns':guard.state}
     pathlib.Path('cloud-availability.json').write_text(json.dumps(report,indent=2),encoding='utf8')
     print('CRYPTODATA_PROBE_REPORT='+json.dumps(report),flush=True)
