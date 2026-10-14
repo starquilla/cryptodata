@@ -6,7 +6,7 @@ LOCK = threading.Lock()
 def run_probe():
     try:
         with tempfile.TemporaryDirectory() as work:
-            result = subprocess.run([sys.executable, str(pathlib.Path(__file__).with_name('probe_cloud_sources.py'))], cwd=work, capture_output=True, text=True, timeout=450)
+            result = subprocess.run([sys.executable, str(pathlib.Path(__file__).resolve().with_name('probe_cloud_sources.py'))], cwd=work, capture_output=True, text=True, timeout=450)
             lines = [x for x in result.stdout.splitlines() if x.startswith('CRYPTODATA_PROBE_REPORT=')]
             if not lines: raise ValueError('probe report absent')
             report = json.loads(lines[-1].split('=', 1)[1])
@@ -36,3 +36,4 @@ class Handler(BaseHTTPRequestHandler):
 if __name__ == '__main__':
     threading.Thread(target=run_probe, daemon=True).start()
     ThreadingHTTPServer(('0.0.0.0', int(os.getenv('PORT', '10000'))), Handler).serve_forever()
+
