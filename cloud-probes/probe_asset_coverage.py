@@ -1,6 +1,6 @@
 """Full frozen instrument coverage, three sequential passes; no trading or cloud credentials."""
 import datetime as dt,json,math,os,pathlib,time,urllib.request,urllib.error,urllib.parse
-from probe_cloud_sources import PROBES,validate
+from probe_cloud_sources import PROBES,validate,configured_sources
 from cloud_rate_guard import RateGuard
 ROOT=pathlib.Path(__file__).resolve().parent
 
@@ -25,7 +25,8 @@ def jobs():
   replace={'coinbase_spot':'BTC-USD','kraken_spot':'XBTUSD','bitflyer_spot':'BTC_JPY','bitbank_spot':'btc_jpy','upbit_spot':'KRW-BTC','bithumb_spot':'KRW-BTC'}[source]
   tasks.append((source,asset,symbol,'ticker',url.replace(replace,urllib.parse.quote(symbol)),template[3],None))
  for source,dataset,url,kind,body in PROBES[14:]:tasks.append((source,'SHARED','SHARED',dataset,url,kind,body))
- return tasks,extra
+ sources=configured_sources()
+ return [t for t in tasks if t[0] in sources],extra
 
 def run_settings(environ):
  rounds=int(environ.get('PROBE_ROUNDS','3'))
@@ -39,7 +40,7 @@ def main():
  tasks,extra=jobs()
  if not tasks:raise ValueError('empty coverage job set')
  start=time.monotonic();results=[]
- guard=RateGuard('rate-cooldowns.json',json.loads(os.getenv('PROBE_COOLDOWNS_JSON','{}')))
+ guard=RateGuard(os.getenv('PROBE_STATE_PATH','rate-cooldowns.json'),json.loads(os.getenv('PROBE_COOLDOWNS_JSON','{}')))
  for repeat in range(rounds):
   for source,asset,symbol,dataset,url,kind,body in tasks:
    row=dict(round=repeat+1,source=source,asset=asset,symbol=symbol,dataset=dataset,checked_at=dt.datetime.now(dt.timezone.utc).isoformat())
@@ -65,7 +66,7 @@ def main():
     time.sleep(binance_pause if host=='fapi.binance.com' else .4)
    row['seconds']=round(time.monotonic()-tick,3);results.append(row)
    if len(results)%20==0:print('CRYPTODATA_PROGRESS='+json.dumps({'checked':len(results),'total':len(tasks)*rounds,'failed':sum(x['status']!='PASS' for x in results),'seconds':round(time.monotonic()-start,2)}),flush=True)
- report=dict(checked_at=dt.datetime.now(dt.timezone.utc).isoformat(),status='PASS' if all(x['status']=='PASS' for x in results) else 'FAIL',rounds=rounds,seconds=round(time.monotonic()-start,2),task_count_per_round=len(tasks),results=results,cooldowns=guard.state,scope='30 configured assets; API sample coverage x3, NOT production collector throughput x3 or six-month stability',missing_instruments='Frozen mappings absent entries are not configured; never replaced by another venue')
+ report=dict(checked_at=dt.datetime.now(dt.timezone.utc).isoformat(),status='PASS' if results and all(x['status']=='PASS' for x in results) else 'FAIL',rounds=rounds,selected_sources=sorted(configured_sources()),seconds=round(time.monotonic()-start,2),task_count_per_round=len(tasks),results=results,cooldowns=guard.state,scope='Selected-source configured-asset API coverage; NOT production collector throughput or six-month stability',missing_instruments='Frozen mappings absent entries are not configured; never replaced by another venue')
  pathlib.Path('cloud-coverage.json').write_text(json.dumps(report,indent=2),encoding='utf8')
  print('CRYPTODATA_PROBE_REPORT='+json.dumps(report),flush=True)
  return 0 if report['status']=='PASS' else 2

@@ -1,28 +1,17 @@
 """One probe per process start; cached public results only, no arbitrary fetch endpoint."""
-import argparse, json, os, pathlib, subprocess, sys, tempfile, threading
+import argparse, json, os, pathlib, threading
+from controlled_probe import execute_probe
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 STATE = {'status': 'IDLE', 'scope': 'No provider requests until explicit --run-once launch'}
 LOCK = threading.Lock()
 def run_probe():
     try:
-        with tempfile.TemporaryDirectory() as work:
-            script = 'probe_asset_coverage.py' if os.getenv('PROBE_MODE') == 'coverage' else 'probe_cloud_sources.py'
-            process = subprocess.Popen([sys.executable, str(pathlib.Path(__file__).resolve().with_name(script))], cwd=work, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
-            watchdog=threading.Timer(1600,process.kill);watchdog.daemon=True;watchdog.start()
-            lines=[]
-            for line in process.stdout:
-                if line.startswith('CRYPTODATA_PROGRESS='):
-                    with LOCK: STATE.update(progress=json.loads(line.split('=',1)[1]))
-                if line.startswith('CRYPTODATA_PROBE_REPORT='): lines.append(line.strip())
-            process.wait(timeout=30)
-            watchdog.cancel()
-            if not lines: raise ValueError('probe report absent')
-            report = json.loads(lines[-1].split('=', 1)[1])
-            report['environment'] = 'Render source availability probe'
-            report['exit_code'] = process.returncode
-            report['configured_region'] = os.getenv('PROBE_REGION', 'UNSPECIFIED')
-            report['region_is_provider_configuration_not_geolocation_proof'] = True
-            report['cooldown_persistence'] = 'local file within this probe; export cooldowns into Render env before any restart; production external persistence NOT_IMPLEMENTED'
+        script = 'probe_asset_coverage.py' if os.getenv('PROBE_MODE') == 'coverage' else 'probe_cloud_sources.py'
+        report = execute_probe(pathlib.Path(__file__).resolve().with_name(script),
+                               os.environ['PROBE_CONTROL_ROOT'], os.environ['PROBE_RUN_ID'])
+        report['environment'] = 'Controlled source availability probe'
+        report['configured_region'] = os.getenv('PROBE_REGION', 'UNSPECIFIED')
+        report['region_is_provider_configuration_not_geolocation_proof'] = True
         with LOCK:
             STATE.clear(); STATE.update(report)
         print('CRYPTODATA_PROBE_REPORT=' + json.dumps(report), flush=True)
@@ -46,14 +35,24 @@ def main(argv=None):
     parser.add_argument('--run-once', action='store_true', help='Explicitly launch one probe; omit for network-idle boot')
     parser.add_argument('--mode', choices=('sample','coverage'), default='sample')
     parser.add_argument('--rounds', choices=(1,3), type=int, default=1)
+    parser.add_argument('--run-id')
+    parser.add_argument('--state-dir')
+    parser.add_argument('--sources', nargs='+')
     args = parser.parse_args(argv)
     STATE.clear()
     STATE.update(status='IDLE', provider_requests_enabled=False,
                  commit=os.getenv('RENDER_GIT_COMMIT','unknown'),
                  scope='No provider requests until explicit --run-once launch')
     if args.run_once:
+        if not args.run_id or not args.state_dir or not pathlib.Path(args.state_dir).is_absolute() or not args.sources:
+            parser.error('--run-once requires --run-id, absolute --state-dir and explicit --sources')
+        from probe_cloud_sources import configured_sources
+        configured_sources({'PROBE_SOURCES_JSON':json.dumps(args.sources)})
         os.environ['PROBE_MODE'] = args.mode
         os.environ['PROBE_ROUNDS'] = str(args.rounds)
+        os.environ['PROBE_RUN_ID'] = args.run_id
+        os.environ['PROBE_CONTROL_ROOT'] = args.state_dir
+        os.environ['PROBE_SOURCES_JSON'] = json.dumps(args.sources)
         STATE.update(status='RUNNING', provider_requests_enabled=True)
         threading.Thread(target=run_probe, daemon=True).start()
     ThreadingHTTPServer(('0.0.0.0', int(os.getenv('PORT', '10000'))), Handler).serve_forever()

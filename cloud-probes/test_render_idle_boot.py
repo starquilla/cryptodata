@@ -1,4 +1,6 @@
 import os
+import pathlib
+import tempfile
 import unittest
 from unittest.mock import patch
 import render_probe_server as server
@@ -9,7 +11,7 @@ class IdleBootTests(unittest.TestCase):
         with patch.dict(os.environ, {'PROBE_MODE':'coverage','PROBE_ROUNDS':'3'}), \
              patch.object(server.threading,'Thread') as thread, \
              patch.object(server,'ThreadingHTTPServer') as http, \
-             patch.object(server.subprocess,'Popen') as process:
+             patch('controlled_probe.subprocess.Popen') as process:
             server.main([])
             thread.assert_not_called()
             process.assert_not_called()
@@ -21,7 +23,7 @@ class IdleBootTests(unittest.TestCase):
         with patch.dict(os.environ, {'PROBE_MODE':'coverage'}), \
              patch.object(server.threading,'Thread') as thread, \
              patch.object(server,'ThreadingHTTPServer'):
-            server.main(['--run-once'])
+            server.main(['--run-once','--run-id','test-sample','--state-dir',str(pathlib.Path(tempfile.gettempdir()).resolve()),'--sources','okx_spot'])
             thread.return_value.start.assert_called_once()
             self.assertEqual(os.environ['PROBE_MODE'],'sample')
             self.assertEqual(os.environ['PROBE_ROUNDS'],'1')
@@ -30,7 +32,7 @@ class IdleBootTests(unittest.TestCase):
         with patch.dict(os.environ, {}), \
              patch.object(server.threading,'Thread'), \
              patch.object(server,'ThreadingHTTPServer'):
-            server.main(['--run-once','--mode','coverage','--rounds','3'])
+            server.main(['--run-once','--mode','coverage','--rounds','3','--run-id','test-three','--state-dir',str(pathlib.Path(tempfile.gettempdir()).resolve()),'--sources','okx_spot'])
             self.assertEqual(os.environ['PROBE_MODE'],'coverage')
             self.assertEqual(os.environ['PROBE_ROUNDS'],'3')
 

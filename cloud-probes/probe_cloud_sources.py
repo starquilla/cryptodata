@@ -55,10 +55,25 @@ def validate(kind,d):
         if not rows or not rows[0].get('name'):raise ValueError('empty stablecoins')
         return len(rows)
     raise ValueError('unknown validation kind')
+def configured_sources(environ=None):
+    environ = os.environ if environ is None else environ
+    available = {p[0] for p in PROBES}
+    raw = environ.get('PROBE_SOURCES_JSON')
+    if raw is None:
+        return available
+    selected = json.loads(raw)
+    if not isinstance(selected,list) or not selected or not all(isinstance(x,str) for x in selected):
+        raise ValueError('PROBE_SOURCES_JSON must be a nonempty source list')
+    if len(set(selected)) != len(selected) or set(selected) - available:
+        raise ValueError('duplicate or unknown probe source')
+    return set(selected)
+
 def main():
+    sources = configured_sources()
     results=[];started=time.monotonic()
     guard=RateGuard(os.getenv('PROBE_STATE_PATH','rate-cooldowns.json'), json.loads(os.getenv('PROBE_COOLDOWNS_JSON','{}')))
     for source,dataset,url,kind,body in PROBES:
+        if source not in sources:continue
         t=time.monotonic();entry={'source':source,'dataset':dataset,'url':url,'checked_at':dt.datetime.now(dt.timezone.utc).isoformat()}
         host=urllib.parse.urlparse(url).netloc
         if guard.remaining(host):
@@ -78,7 +93,7 @@ def main():
                 entry.update(cooldown=block,retry_at=dt.datetime.fromtimestamp(block['until'],dt.timezone.utc).isoformat())
         except Exception as e:entry.update(status='FAIL',error_type=type(e).__name__,error=str(e)[:160])
         entry['seconds']=round(time.monotonic()-t,3);results.append(entry);print(json.dumps(entry),flush=True);time.sleep(max(2.0,float(os.getenv('BINANCE_FUTURES_PAUSE_SECONDS','2'))) if host=='fapi.binance.com' else .4)
-    report={'checked_at':dt.datetime.now(dt.timezone.utc).isoformat(),'runner_os':os.getenv('RUNNER_OS','local'),'runner_arch':os.getenv('RUNNER_ARCH','local'),'workflow_run_id':os.getenv('GITHUB_RUN_ID'),'scope':'BTC sample and shared DeFi; no full 30-asset test or storage/scheduling acceptance','status':'PASS' if all(x['status']=='PASS' for x in results) else 'FAIL','seconds':round(time.monotonic()-started,3),'results':results,'cooldowns':guard.state}
+    report={'checked_at':dt.datetime.now(dt.timezone.utc).isoformat(),'runner_os':os.getenv('RUNNER_OS','local'),'runner_arch':os.getenv('RUNNER_ARCH','local'),'workflow_run_id':os.getenv('GITHUB_RUN_ID'),'selected_sources':sorted(sources),'scope':'Selected-source BTC sample and shared DeFi; no full 30-asset test or storage/scheduling acceptance','status':'PASS' if results and all(x['status']=='PASS' for x in results) else 'FAIL','seconds':round(time.monotonic()-started,3),'results':results,'cooldowns':guard.state}
     pathlib.Path('cloud-availability.json').write_text(json.dumps(report,indent=2),encoding='utf8')
     print('CRYPTODATA_PROBE_REPORT='+json.dumps(report),flush=True)
     if os.getenv('GITHUB_STEP_SUMMARY'):
