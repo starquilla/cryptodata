@@ -1,7 +1,5 @@
 name: CryptoData emergency verification
 on:
-  push:
-    paths: ['ops/**', '.github/workflows/cryptodata-emergency.yml']
   workflow_dispatch:
     inputs:
       retain_package:
