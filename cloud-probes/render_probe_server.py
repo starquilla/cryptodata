@@ -1,7 +1,7 @@
 """One probe per process start; cached public results only, no arbitrary fetch endpoint."""
-import json, os, pathlib, subprocess, sys, tempfile, threading
+import argparse, json, os, pathlib, subprocess, sys, tempfile, threading
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
-STATE = {'status': 'RUNNING', 'scope': 'BTC source availability; no scheduled collector or storage'}
+STATE = {'status': 'IDLE', 'scope': 'No provider requests until explicit --run-once launch'}
 LOCK = threading.Lock()
 def run_probe():
     try:
@@ -41,6 +41,22 @@ class Handler(BaseHTTPRequestHandler):
         self.send_header('Cache-Control', 'no-store'); self.send_header('Content-Length', str(len(body)))
         self.end_headers(); self.wfile.write(body)
     def log_message(self, *args): pass
-if __name__ == '__main__':
-    threading.Thread(target=run_probe, daemon=True).start()
+def main(argv=None):
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--run-once', action='store_true', help='Explicitly launch one probe; omit for network-idle boot')
+    parser.add_argument('--mode', choices=('sample','coverage'), default='sample')
+    parser.add_argument('--rounds', choices=(1,3), type=int, default=1)
+    args = parser.parse_args(argv)
+    STATE.clear()
+    STATE.update(status='IDLE', provider_requests_enabled=False,
+                 commit=os.getenv('RENDER_GIT_COMMIT','unknown'),
+                 scope='No provider requests until explicit --run-once launch')
+    if args.run_once:
+        os.environ['PROBE_MODE'] = args.mode
+        os.environ['PROBE_ROUNDS'] = str(args.rounds)
+        STATE.update(status='RUNNING', provider_requests_enabled=True)
+        threading.Thread(target=run_probe, daemon=True).start()
     ThreadingHTTPServer(('0.0.0.0', int(os.getenv('PORT', '10000'))), Handler).serve_forever()
+
+if __name__ == '__main__':
+    main()
