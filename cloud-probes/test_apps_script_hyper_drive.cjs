@@ -1,0 +1,12 @@
+const fs=require('node:fs'),vm=require('node:vm'),crypto=require('node:crypto'),assert=require('node:assert/strict');
+function setup(duplicate=false){
+ const payload_text=JSON.stringify({public:'fixture'}),sha=crypto.createHash('sha256').update(payload_text).digest('hex'),raw=JSON.stringify({schema:1,payload_text,sha256:sha}),bytes=Buffer.from(raw),md5=crypto.createHash('md5').update(bytes).digest('hex');
+ const props=new Map([['packet_manifest_20261015-hyper-packet-v1',JSON.stringify({packet_id:'20261015-hyper-packet-v1',sha256:sha,chunks:1})],['packet_chunk_20261015-hyper-packet-v1_0',bytes.toString('base64')]]),calls=[];let files=[];
+ const file={id:'fixture-id',size:bytes.length,md5Checksum:md5,appProperties:{packet_sha256:sha}};
+ const ctx={console:{log(){}},PropertiesService:{getScriptProperties:()=>({getProperty:k=>props.get(k),setProperty:(k,v)=>props.set(k,v)})},LockService:{getScriptLock:()=>({tryLock:()=>true,releaseLock(){}})},ScriptApp:{getOAuthToken:()=>'<mock-token-not-real>'},Utilities:{newBlob:v=>({getBytes:()=>Array.from(Buffer.from(v)),getDataAsString:()=>Buffer.from(v).toString()}),base64Decode:v=>Array.from(Buffer.from(v,'base64')),DigestAlgorithm:{SHA_256:'sha256',MD5:'md5'},computeDigest:(a,b)=>Array.from(crypto.createHash(a).update(Buffer.from(b)).digest())},UrlFetchApp:{fetch:(url,o)=>{assert.ok(url.startsWith('https://www.googleapis.com/'));calls.push({url,method:o.method||'get'});let data;if(o.method==='post'){files=[file];data=file;}else data={files:duplicate?[file,file]:files};return{getResponseCode:()=>200,getContentText:()=>JSON.stringify(data)};}}};
+ vm.createContext(ctx);vm.runInContext(fs.readFileSync(__dirname+'/apps_script_hyper_drive.gs','utf8'),ctx);return{ctx,calls,props};
+}
+{const s=setup();s.ctx.cryptodataHyperPacketToDrive();s.ctx.cryptodataHyperPacketToDrive();assert.equal(s.calls.filter(x=>x.method==='post').length,1);assert.ok(s.props.has('packet_drive_20261015-hyper-packet-v1'));}
+{const s=setup(true);assert.throws(()=>s.ctx.cryptodataHyperPacketToDrive(),/duplicate/);assert.equal(s.calls.filter(x=>x.method==='post').length,0);}
+{const s=setup();s.props.set('packet_chunk_20261015-hyper-packet-v1_0',Buffer.from('{}').toString('base64'));assert.throws(()=>s.ctx.cryptodataHyperPacketToDrive());assert.equal(s.calls.length,0);}
+console.log(JSON.stringify({status:'PASS',scenarios:3,provider_calls:0,network:'mocked Google only'}));
