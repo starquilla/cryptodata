@@ -1,7 +1,5 @@
 name: CryptoData ARM availability gate
 on:
-  push:
-    paths: ['cloud-probes/**', '.github/workflows/cryptodata-availability-arm.yml']
   workflow_dispatch:
 permissions:
   contents: read
