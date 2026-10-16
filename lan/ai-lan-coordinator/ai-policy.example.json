@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "providers": {
+    "codex": {
+      "enabled": false,
+      "timeout_seconds": 120,
+      "max_calls_24h": 3
+    },
+    "gemini": {
+      "enabled": false,
+      "timeout_seconds": 120,
+      "max_calls_24h": 3
+    },
+    "antigravity": {
+      "enabled": false,
+      "timeout_seconds": 110,
+      "max_calls_24h": 6
+    }
+  },
+  "input_max_bytes": 12000,
+  "output_max_bytes": 16000,
+  "allowed_operations": [
+    "summarize",
+    "review"
+  ],
+  "scope": "Text supplied explicitly by the user; no shell, files, browser, external tools, delegation or production access"
+}

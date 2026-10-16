@@ -1,0 +1,12 @@
+{
+  "TRX": {
+    "name": "TRON / Tronix",
+    "url": "https://tron.network/trx/?lng=zh",
+    "scope": "Native asset name and ticker; not venue contract identity"
+  },
+  "USDe": {
+    "name": "Ethena USDe",
+    "url": "https://ethena.fi/",
+    "scope": "Issuer product name; not venue contract identity"
+  }
+}

@@ -1,0 +1,22 @@
+name: CryptoData ARM availability gate
+on:
+  push:
+    paths: ['cloud-probes/**', '.github/workflows/cryptodata-availability-arm.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: cryptodata-arm-availability
+  cancel-in-progress: false
+jobs:
+  probe:
+    runs-on: ubuntu-24.04-arm
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.14'
+      - name: Check exact public datasets
+        run: python cloud-probes/probe_cloud_sources.py
+

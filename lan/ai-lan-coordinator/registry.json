@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "tools": {
+    "hash_text": {"enabled": true, "effect": "read", "description": "SHA256 of bounded UTF-8 text; no files or network"},
+    "text_stats": {"enabled": true, "effect": "read", "description": "Count words and characters of bounded text"},
+    "inventory": {"enabled": true, "effect": "read", "description": "Local OS, hostname and executable availability; no credentials"},
+    "ai_text": {"enabled": false, "effect": "metered", "description": "Gated supplied-text-only CLI adapter; max one model attempt per queue job; independent local login required"},
+    "codex": {"enabled": false, "effect": "write", "description": "Coding/writing adapter remains unavailable; use separately gated ai_text for supplied text only"},
+    "gemini": {"enabled": false, "effect": "read", "description": "CLI not detected; pending independent local authentication and adapter acceptance"},
+    "cryptodata": {"enabled": false, "effect": "write", "description": "Existing production schedules are outside this pilot"}
+  }
+}

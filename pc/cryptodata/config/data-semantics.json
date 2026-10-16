@@ -1,0 +1,42 @@
+{
+  "version": 2,
+  "identity_status": "catalog_base_quote_candidates_only",
+  "quote_policy": "Keep original quote currency; never assume USD=USDT=USDC.",
+  "replacement_policy": "A missing venue series remains missing. Another venue is an independent comparison, not a replacement observation.",
+  "oi": {
+    "binance_perpetual": {
+      "endpoint": "/fapi/v1/openInterest",
+      "unit": "base_asset for selected linear USDT contracts",
+      "comparability": "Do not aggregate with other venues until counting convention verified"
+    },
+    "bybit_perpetual": {
+      "endpoint": "/v5/market/open-interest",
+      "field": "openInterest",
+      "unit": "base_asset for linear contracts",
+      "counting_convention": "sum of both sides per current official documentation; singleOpenInterest is a distinct field",
+      "documentation": "https://bybit-exchange.github.io/docs/v5/market/open-interest"
+    }
+  },
+  "funding": {
+    "stored": "actual raw settlement rate and settlement timestamp",
+    "annualized": false,
+    "interval": "Instrument metadata retained in raw catalogs; do not assume uniform 8-hour interval"
+  },
+  "candles": {
+    "interval": "5m",
+    "only_closed": true,
+    "volume": "base asset volume",
+    "timestamps": "Unix milliseconds UTC"
+  },
+  "defillama": {
+    "scope": "raw public snapshots only",
+    "warning": "TVL change is not a net-flow measurement"
+  },
+  "oi_history": {
+    "interval": "1h",
+    "binance_field": "sumOpenInterest",
+    "binance_counting_convention": "provider_native_unverified",
+    "bybit_fields": "singleOpenInterest preferred when present; otherwise openInterest",
+    "aggregation": "disabled across venues until conventions verified"
+  }
+}

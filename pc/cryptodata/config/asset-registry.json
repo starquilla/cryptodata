@@ -1,0 +1,516 @@
+[
+  {
+    "asset": "BTC",
+    "name": "Bitcoin",
+    "identity_status": "named_external_registry_observed",
+    "evidence": [
+      {
+        "provider": "Coinbase",
+        "url": "https://api.coinbase.com/v2/currencies/crypto",
+        "asset_id": "5b71fc48-3dd3-540c-809b-f8c94d0e68b5",
+        "name": "Bitcoin"
+      }
+    ],
+    "onchain_contract_verified": false,
+    "cross_venue_identity_verified": false,
+    "eligible_for_automated_trading": false
+  },
+  {
+    "asset": "ETH",
+    "name": "Ethereum",
+    "identity_status": "named_external_registry_observed",
+    "evidence": [
+      {
+        "provider": "Coinbase",
+        "url": "https://api.coinbase.com/v2/currencies/crypto",
+        "asset_id": "d85dce9b-5b73-5c3c-8978-522ce1d1c1b4",
+        "name": "Ethereum"
+      }
+    ],
+    "onchain_contract_verified": false,
+    "cross_venue_identity_verified": false,
+    "eligible_for_automated_trading": false
+  },
+  {
+    "asset": "XRP",
+    "name": "XRP",
+    "identity_status": "named_external_registry_observed",
+    "evidence": [
+      {
+        "provider": "Coinbase",
+        "url": "https://api.coinbase.com/v2/currencies/crypto",
+        "asset_id": "e17a44c8-6ea1-564f-a02c-2a9ca1d8eec4",
+        "name": "XRP"
+      }
+    ],
+    "onchain_contract_verified": false,
+    "cross_venue_identity_verified": false,
+    "eligible_for_automated_trading": false
+  },
+  {
+    "asset": "DOGE",
+    "name": "Dogecoin",
+    "identity_status": "named_external_registry_observed",
+    "evidence": [
+      {
+        "provider": "Coinbase",
+        "url": "https://api.coinbase.com/v2/currencies/crypto",
+        "asset_id": "d9a3edfa-1be7-589c-bd20-c034f3830b60",
+        "name": "Dogecoin"
+      }
+    ],
+    "onchain_contract_verified": false,
+    "cross_venue_identity_verified": false,
+    "eligible_for_automated_trading": false
+  },
+  {
+    "asset": "LTC",
+    "name": "Litecoin",
+    "identity_status": "named_external_registry_observed",
+    "evidence": [
+      {
+        "provider": "Coinbase",
+        "url": "https://api.coinbase.com/v2/currencies/crypto",
+        "asset_id": "c9c24c6e-c045-5fde-98a2-00ea7f520437",
+        "name": "Litecoin"
+      }
+    ],
+    "onchain_contract_verified": false,
+    "cross_venue_identity_verified": false,
+    "eligible_for_automated_trading": false
+  },
+  {
+    "asset": "BCH",
+    "name": "Bitcoin Cash",
+    "identity_status": "named_external_registry_observed",
+    "evidence": [
+      {
+        "provider": "Coinbase",
+        "url": "https://api.coinbase.com/v2/currencies/crypto",
+        "asset_id": "45f99e13-b522-57d7-8058-c57bf92fe7a3",
+        "name": "Bitcoin Cash"
+      }
+    ],
+    "onchain_contract_verified": false,
+    "cross_venue_identity_verified": false,
+    "eligible_for_automated_trading": false
+  },
+  {
+    "asset": "SOL",
+    "name": "Solana",
+    "identity_status": "named_external_registry_observed",
+    "evidence": [
+      {
+        "provider": "Coinbase",
+        "url": "https://api.coinbase.com/v2/currencies/crypto",
+        "asset_id": "4f039497-3af8-5bb3-951c-6df9afa9be1c",
+        "name": "Solana"
+      }
+    ],
+    "onchain_contract_verified": false,
+    "cross_venue_identity_verified": false,
+    "eligible_for_automated_trading": false
+  },
+  {
+    "asset": "BNB",
+    "name": "BNB",
+    "identity_status": "named_external_registry_observed",
+    "evidence": [
+      {
+        "provider": "Coinbase",
+        "url": "https://api.coinbase.com/v2/currencies/crypto",
+        "asset_id": "eb8ab5cb-d2a5-5068-88af-21c3ed92757a",
+        "name": "BNB"
+      }
+    ],
+    "onchain_contract_verified": false,
+    "cross_venue_identity_verified": false,
+    "eligible_for_automated_trading": false
+  },
+  {
+    "asset": "ADA",
+    "name": "Cardano",
+    "identity_status": "named_external_registry_observed",
+    "evidence": [
+      {
+        "provider": "Coinbase",
+        "url": "https://api.coinbase.com/v2/currencies/crypto",
+        "asset_id": "63062039-7afb-56ff-8e19-5e3215dc404a",
+        "name": "Cardano"
+      }
+    ],
+    "onchain_contract_verified": false,
+    "cross_venue_identity_verified": false,
+    "eligible_for_automated_trading": false
+  },
+  {
+    "asset": "AVAX",
+    "name": "Avalanche",
+    "identity_status": "named_external_registry_observed",
+    "evidence": [
+      {
+        "provider": "Coinbase",
+        "url": "https://api.coinbase.com/v2/currencies/crypto",
+        "asset_id": "9d06e463-b3ba-5abf-9082-8761846b28ab",
+        "name": "Avalanche"
+      }
+    ],
+    "onchain_contract_verified": false,
+    "cross_venue_identity_verified": false,
+    "eligible_for_automated_trading": false
+  },
+  {
+    "asset": "SUI",
+    "name": "SUI",
+    "identity_status": "named_external_registry_observed",
+    "evidence": [
+      {
+        "provider": "Coinbase",
+        "url": "https://api.coinbase.com/v2/currencies/crypto",
+        "asset_id": "26417fbc-f542-417a-9596-5a6065b76b78",
+        "name": "SUI"
+      }
+    ],
+    "onchain_contract_verified": false,
+    "cross_venue_identity_verified": false,
+    "eligible_for_automated_trading": false
+  },
+  {
+    "asset": "ARB",
+    "name": "Arbitrum",
+    "identity_status": "named_external_registry_observed",
+    "evidence": [
+      {
+        "provider": "Coinbase",
+        "url": "https://api.coinbase.com/v2/currencies/crypto",
+        "asset_id": "c2102278-2bbe-49e1-a115-5e83bffbcead",
+        "name": "Arbitrum"
+      }
+    ],
+    "onchain_contract_verified": false,
+    "cross_venue_identity_verified": false,
+    "eligible_for_automated_trading": false
+  },
+  {
+    "asset": "OP",
+    "name": "Optimism",
+    "identity_status": "named_external_registry_observed",
+    "evidence": [
+      {
+        "provider": "Coinbase",
+        "url": "https://api.coinbase.com/v2/currencies/crypto",
+        "asset_id": "627b8bbb-9908-41be-87a8-1c9c87b6c5e7",
+        "name": "Optimism"
+      }
+    ],
+    "onchain_contract_verified": false,
+    "cross_venue_identity_verified": false,
+    "eligible_for_automated_trading": false
+  },
+  {
+    "asset": "DOT",
+    "name": "Polkadot",
+    "identity_status": "named_external_registry_observed",
+    "evidence": [
+      {
+        "provider": "Coinbase",
+        "url": "https://api.coinbase.com/v2/currencies/crypto",
+        "asset_id": "ebea861a-c0ae-5323-bbe0-46893a119a39",
+        "name": "Polkadot"
+      }
+    ],
+    "onchain_contract_verified": false,
+    "cross_venue_identity_verified": false,
+    "eligible_for_automated_trading": false
+  },
+  {
+    "asset": "ATOM",
+    "name": "Cosmos",
+    "identity_status": "named_external_registry_observed",
+    "evidence": [
+      {
+        "provider": "Coinbase",
+        "url": "https://api.coinbase.com/v2/currencies/crypto",
+        "asset_id": "64c607d2-4663-5649-86e0-3ab06bba0202",
+        "name": "Cosmos"
+      }
+    ],
+    "onchain_contract_verified": false,
+    "cross_venue_identity_verified": false,
+    "eligible_for_automated_trading": false
+  },
+  {
+    "asset": "NEAR",
+    "name": "NEAR Protocol",
+    "identity_status": "named_external_registry_observed",
+    "evidence": [
+      {
+        "provider": "Coinbase",
+        "url": "https://api.coinbase.com/v2/currencies/crypto",
+        "asset_id": "979a75c9-9466-5e6b-9545-930a89a3db8f",
+        "name": "NEAR Protocol"
+      }
+    ],
+    "onchain_contract_verified": false,
+    "cross_venue_identity_verified": false,
+    "eligible_for_automated_trading": false
+  },
+  {
+    "asset": "APT",
+    "name": "Aptos",
+    "identity_status": "named_external_registry_observed",
+    "evidence": [
+      {
+        "provider": "Coinbase",
+        "url": "https://api.coinbase.com/v2/currencies/crypto",
+        "asset_id": "976e5f1e-e419-4eac-990e-76caf525c6af",
+        "name": "Aptos"
+      }
+    ],
+    "onchain_contract_verified": false,
+    "cross_venue_identity_verified": false,
+    "eligible_for_automated_trading": false
+  },
+  {
+    "asset": "LINK",
+    "name": "Chainlink",
+    "identity_status": "named_external_registry_observed",
+    "evidence": [
+      {
+        "provider": "Coinbase",
+        "url": "https://api.coinbase.com/v2/currencies/crypto",
+        "asset_id": "ea3107c6-416b-5b02-b99f-ded31a0cbdfe",
+        "name": "Chainlink"
+      }
+    ],
+    "onchain_contract_verified": false,
+    "cross_venue_identity_verified": false,
+    "eligible_for_automated_trading": false
+  },
+  {
+    "asset": "AAVE",
+    "name": "Aave",
+    "identity_status": "named_external_registry_observed",
+    "evidence": [
+      {
+        "provider": "Coinbase",
+        "url": "https://api.coinbase.com/v2/currencies/crypto",
+        "asset_id": "b1646860-6b23-5f7d-a506-cba0902f0ca9",
+        "name": "Aave"
+      }
+    ],
+    "onchain_contract_verified": false,
+    "cross_venue_identity_verified": false,
+    "eligible_for_automated_trading": false
+  },
+  {
+    "asset": "UNI",
+    "name": "Uniswap",
+    "identity_status": "named_external_registry_observed",
+    "evidence": [
+      {
+        "provider": "Coinbase",
+        "url": "https://api.coinbase.com/v2/currencies/crypto",
+        "asset_id": "412832ad-59dd-5af8-8d36-99ebda3afb80",
+        "name": "Uniswap"
+      }
+    ],
+    "onchain_contract_verified": false,
+    "cross_venue_identity_verified": false,
+    "eligible_for_automated_trading": false
+  },
+  {
+    "asset": "LDO",
+    "name": "Lido DAO Token",
+    "identity_status": "named_external_registry_observed",
+    "evidence": [
+      {
+        "provider": "Coinbase",
+        "url": "https://api.coinbase.com/v2/currencies/crypto",
+        "asset_id": "2d658fea-6082-59a2-86f4-b0f79a8bfc72",
+        "name": "Lido DAO Token"
+      }
+    ],
+    "onchain_contract_verified": false,
+    "cross_venue_identity_verified": false,
+    "eligible_for_automated_trading": false
+  },
+  {
+    "asset": "PENDLE",
+    "name": "Pendle",
+    "identity_status": "named_external_registry_observed",
+    "evidence": [
+      {
+        "provider": "Coinbase",
+        "url": "https://api.coinbase.com/v2/currencies/crypto",
+        "asset_id": "5992b214-b5cd-52ee-8140-b17f755764b9",
+        "name": "Pendle"
+      }
+    ],
+    "onchain_contract_verified": false,
+    "cross_venue_identity_verified": false,
+    "eligible_for_automated_trading": false
+  },
+  {
+    "asset": "HYPE",
+    "name": "Hyperliquid",
+    "identity_status": "named_external_registry_observed",
+    "evidence": [
+      {
+        "provider": "Coinbase",
+        "url": "https://api.coinbase.com/v2/currencies/crypto",
+        "asset_id": "d13e2595-a214-48a7-9c09-2fdd960d10d8",
+        "name": "Hyperliquid"
+      }
+    ],
+    "onchain_contract_verified": false,
+    "cross_venue_identity_verified": false,
+    "eligible_for_automated_trading": false
+  },
+  {
+    "asset": "ENA",
+    "name": "Ethena",
+    "identity_status": "named_external_registry_observed",
+    "evidence": [
+      {
+        "provider": "Coinbase",
+        "url": "https://api.coinbase.com/v2/currencies/crypto",
+        "asset_id": "356313de-17ad-4378-a0ac-c4630fc51637",
+        "name": "Ethena"
+      }
+    ],
+    "onchain_contract_verified": false,
+    "cross_venue_identity_verified": false,
+    "eligible_for_automated_trading": false
+  },
+  {
+    "asset": "TRX",
+    "name": "TRON / Tronix",
+    "identity_status": "named_external_registry_observed",
+    "evidence": [
+      {
+        "provider": "Kraken",
+        "url": "https://api.kraken.com/0/public/Assets",
+        "code": "TRX",
+        "status": "ticker_presence_only"
+      },
+      {
+        "provider": "official issuer/network",
+        "name": "TRON / Tronix",
+        "url": "https://tron.network/trx/?lng=zh",
+        "scope": "Native asset name and ticker; not venue contract identity"
+      }
+    ],
+    "onchain_contract_verified": false,
+    "cross_venue_identity_verified": false,
+    "eligible_for_automated_trading": false
+  },
+  {
+    "asset": "MORPHO",
+    "name": "Morpho",
+    "identity_status": "named_external_registry_observed",
+    "evidence": [
+      {
+        "provider": "Coinbase",
+        "url": "https://api.coinbase.com/v2/currencies/crypto",
+        "asset_id": "5b2cccfb-0ee1-4f15-af2e-eab0a4a095fe",
+        "name": "Morpho"
+      }
+    ],
+    "onchain_contract_verified": false,
+    "cross_venue_identity_verified": false,
+    "eligible_for_automated_trading": false
+  },
+  {
+    "asset": "CRV",
+    "name": "Curve DAO Token",
+    "identity_status": "named_external_registry_observed",
+    "evidence": [
+      {
+        "provider": "Coinbase",
+        "url": "https://api.coinbase.com/v2/currencies/crypto",
+        "asset_id": "48a63b4a-1024-5cbe-9132-5dcc7792487d",
+        "name": "Curve DAO Token"
+      }
+    ],
+    "onchain_contract_verified": false,
+    "cross_venue_identity_verified": false,
+    "eligible_for_automated_trading": false
+  },
+  {
+    "asset": "USDT",
+    "name": "Tether",
+    "identity_status": "named_external_registry_observed",
+    "evidence": [
+      {
+        "provider": "Coinbase",
+        "url": "https://api.coinbase.com/v2/currencies/crypto",
+        "asset_id": "b26327c1-9a34-51d9-b982-9b29e6012648",
+        "name": "Tether"
+      },
+      {
+        "provider": "DefiLlama stablecoins",
+        "file": "E:\\CryptoData tai nguyen\\raw\\pilot-20261016T154257267402Z\\0180-defillama_stablecoins.json.gz",
+        "id": "1",
+        "name": "Tether",
+        "symbol": "USDT"
+      }
+    ],
+    "onchain_contract_verified": false,
+    "cross_venue_identity_verified": false,
+    "eligible_for_automated_trading": false
+  },
+  {
+    "asset": "USDC",
+    "name": "USDC",
+    "identity_status": "named_external_registry_observed",
+    "evidence": [
+      {
+        "provider": "Coinbase",
+        "url": "https://api.coinbase.com/v2/currencies/crypto",
+        "asset_id": "2b92315d-eab7-5bef-84fa-089a131333f5",
+        "name": "USDC"
+      },
+      {
+        "provider": "DefiLlama stablecoins",
+        "file": "E:\\CryptoData tai nguyen\\raw\\pilot-20261016T154257267402Z\\0180-defillama_stablecoins.json.gz",
+        "id": "2",
+        "name": "USD Coin",
+        "symbol": "USDC"
+      }
+    ],
+    "onchain_contract_verified": false,
+    "cross_venue_identity_verified": false,
+    "eligible_for_automated_trading": false
+  },
+  {
+    "asset": "USDe",
+    "name": "Ethena USDe",
+    "identity_status": "named_external_registry_observed",
+    "evidence": [
+      {
+        "provider": "DefiLlama stablecoins",
+        "file": "E:\\CryptoData tai nguyen\\raw\\pilot-20261016T154257267402Z\\0180-defillama_stablecoins.json.gz",
+        "id": "146",
+        "name": "Ethena USDe",
+        "symbol": "USDe"
+      },
+      {
+        "provider": "DefiLlama stablecoins",
+        "file": "E:\\CryptoData tai nguyen\\raw\\pilot-20261016T154257267402Z\\0180-defillama_stablecoins.json.gz",
+        "id": "264",
+        "name": "XBANKING USDE",
+        "symbol": "USDE"
+      },
+      {
+        "provider": "official issuer/network",
+        "name": "Ethena USDe",
+        "url": "https://ethena.fi/",
+        "scope": "Issuer product name; not venue contract identity"
+      }
+    ],
+    "onchain_contract_verified": false,
+    "cross_venue_identity_verified": false,
+    "eligible_for_automated_trading": false
+  }
+]
