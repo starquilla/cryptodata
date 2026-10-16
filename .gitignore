@@ -1,0 +1,19 @@
+# Operational state and credentials never belong in this source repository.
+**/__pycache__/
+*.pyc
+**/private/
+**/credentials/
+**/raw/
+**/normalized/
+**/backups/
+**/releases/
+*.sqlite
+*.sqlite3
+*.sqlite-*
+*.db
+*.key
+*.pem
+*.identity.json
+.env
+.env.*
+*.log

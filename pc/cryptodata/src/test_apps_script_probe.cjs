@@ -1,0 +1,13 @@
+const fs=require('fs'),vm=require('vm'),assert=require('assert');
+const code=fs.readFileSync(__dirname+'/apps_script_probe.gs','utf8');
+const ctx=vm.createContext({});vm.runInContext(code,ctx);
+assert.throws(()=>ctx.cryptodataValidateProbe('bybit_funding',{retCode:10001,result:{list:[]}}));
+assert.throws(()=>ctx.cryptodataValidateProbe('binance_funding',[]));
+assert.throws(()=>ctx.cryptodataValidateProbe('binance_funding',[{fundingRate:'NaN'}]));
+assert.strictEqual(ctx.cryptodataValidateProbe('binance_funding',[{fundingRate:'0'}]),1);
+const manifest=JSON.parse(fs.readFileSync(__dirname+'/../appsscript.json','utf8'));
+assert.deepStrictEqual([...manifest.oauthScopes].sort(),['https://www.googleapis.com/auth/drive.file','https://www.googleapis.com/auth/script.external_request']);
+assert.strictEqual(manifest.runtimeVersion,'V8');
+assert.strictEqual(manifest.timeZone,'Asia/Ho_Chi_Minh');
+assert.ok(manifest.dependencies.enabledAdvancedServices.some(x=>x.serviceId==='drive'&&x.version==='v3'));
+console.log(JSON.stringify({status:'PASS',validation_checks:4,manifest:'matches accepted live manifest',network_calls:0}));

@@ -1,0 +1,21 @@
+{
+  "version": 1,
+  "auto_join_on_symbol": false,
+  "automatic_protocol_aggregation": false,
+  "excluded_symbol_collisions": {
+    "BTC": [
+      "alpha",
+      "blackrockfund"
+    ],
+    "APT": [
+      "apricot-finance"
+    ],
+    "HYPE": [
+      "hyperblast"
+    ],
+    "SOL": [
+      "solana-farm"
+    ]
+  },
+  "reason": "Coin ticker alone is not evidence of protocol identity or entitlement to revenue. Native chain assets and stablecoins require separate metric models."
+}

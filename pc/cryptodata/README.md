@@ -1,0 +1,5 @@
+# Accepted PC source snapshot
+
+Source files here are versioned from PC1; no schedule or production deployment is installed by this directory. The source retains its operational resource-root convention. Do not execute collectors against the default production resource directory to test a checkout. Use `CRYPTODATA_RESOURCE_ROOT` pointing to an isolated fixture, and do not call providers during offline acceptance.
+
+Unit tests: from `src`, run Python unittest discovery with an isolated resource root. Packet and recovery tests use synthetic in-memory databases and disposable backup files, without reading a production database. Quality and Apps Script tests resolve source paths within this checkout. `test_oi_window_pagination.py` covers window filtering, pagination stop conditions and partial-result preservation. Standalone operational scripts must not be treated as unattended cloud jobs. Source schema/semantics catalogues are in `config`; operational account settings and credentials are deliberately absent.

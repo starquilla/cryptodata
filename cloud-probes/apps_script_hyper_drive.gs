@@ -32,3 +32,10 @@ function cryptodataHyperPacketToDrive() {
     console.log('CRYPTODATA_DRIVE_UPLOAD='+JSON.stringify({file_id:file.id,packet_id:id,bytes:bytes.length,sha256:sha,status:'UPLOADED_PENDING_PC_DOWNLOAD_VERIFY'}));
   }finally{lock.releaseLock();}
 }
+
+/** Read-only diagnosis; log provider error fields, never OAuth tokens or headers. */
+function cryptodataDrivePermissionCheck() {
+  const r=UrlFetchApp.fetch('https://www.googleapis.com/drive/v3/files?pageSize=1&fields=files(id)',{headers:{Authorization:'Bearer '+ScriptApp.getOAuthToken()},muteHttpExceptions:true,followRedirects:false});
+  const body=JSON.parse(r.getContentText()),e=body.error||{};
+  console.log('CRYPTODATA_DRIVE_DIAGNOSTIC='+JSON.stringify({http_status:r.getResponseCode(),status:e.status||null,reasons:(e.errors||[]).map(x=>x.reason),message:String(e.message||'').slice(0,700)}));
+}
